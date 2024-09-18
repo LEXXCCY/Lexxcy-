@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXXCY - Debian Installation Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --background-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --hover-color: #2980b9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header-container {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .header-menu {
+            position: relative;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--secondary-color);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--hover-color);
+        }
+
+        .show {
+            display: block;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .info-text {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            text-align: center;
+        }
+
+        .block-container {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .block-header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .block-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .block-item:last-child {
+            border-bottom: none;
+        }
+
+        .block-item span {
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .block-item a {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .block-item a:hover {
+            background-color: var(--hover-color);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-links img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-menu {
+                margin-top: 1rem;
+                align-self: flex-end;
+            }
+
+            .dropdown-content {
+                width: 100%;
+            }
+
+            .block-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .block-item a {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <div class="header-content">
+            <div class="logo">LEXXCY</div>
+            <nav class="header-menu">
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="Tutup.html">Profil</a>
+                    <a href="Top up.html">Top Up</a>
+                    <a href="Tutup.html">Berbagai Jenis Joki</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="info-text">INFORMASI TENTANG INSTALLASI DEBIAN</h1>
+
+        <section>
+            <h2 class="section-title">PANDUAN INSTALLASI DEBIAN</h2>
+            <div class="block-container">
+                <div class="block-header">NAMA</div>
+                <div class="block-item">
+                    <span>CARA INSTALLASI DEBIAN 11</span>
+                    <a href="Debian/1.html">LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>PERINTAH PERINTAH DEBIAN 11</span>
+                    <a href="Debian/2.html">LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>CARA INSTALL APACHE2 DI DEBIAN 11</span>
+                    <a href="Debian/3.html">LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>CARA MELAKUKAN UPDATE REPOSITORY ONLINE DI DEBIAN 11</span>
+                    <a href="Debian/4.html">LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>CARA INSTALL SSH SERVER DAN CARA PEREMOTTAN DI PUTTY DAN WIN SCP</span>
+                    <a href="Debian/5.html">LINK</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">BAHAN BAHAN UNTUK INSTALLASI DEBIAN 11</h2>
+            <div class="block-container">
+                <div class="block-header">NAMA</div>
+                <div class="block-item">
+                    <span>DOWNLOAD DEBIAN 11.7 BULLSEYE 64 BIT</span>
+                    <a href="Tutup.html">LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>DOWNLOAD PUTTY</span>
+                    <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.81-installer.msi" download>LINK</a>
+                </div>
+                <div class="block-item">
+                    <span>DOWNLOAD WIN SCP</span>
+                    <a href="https://download948.mediafire.com/va68tj6q5bngmaFZus2AjeZee2OKPND88tzzfmI1kCCkE2bbIH3T44zDUt2iAY1Q86kFtCapiCNCH_94RoZ9IWRTaABktlKkZcUhLNaWyZOsCz3W3nAwwYoCY9vT1fZGggBeMMh-oaL3ZT66SbGUd4FUtuwCprZDvU7St6n6vuU/yexmefu0luowwrs/WinSCP-6.3.4-Setup.exe" download>LINK</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-links">
+            <a href="https://wa.me/qr/MTSXGMKCX5TQG1" target="_blank">
+                <img src="https://seeklogo.com/images/W/whatsapp-logo-8AE44BBBB0-seeklogo.com.png" alt="WhatsApp">
+                WhatsApp
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram">
+                Instagram
+            </a>
+            <a href="mailto:wawancaravidio@gmail.com">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOVfjG3r1w5VTK_r71CEG4aNBYmLHiLCuppQ&s" alt="Gmail">
+                Gmail
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        © 2024 LEXXCY. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-toggle')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
