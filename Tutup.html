@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Sedang Ditutup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: red;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Server sedang ditutup</h1>
+    <p>Maaf, server sedang dalam perbaikan. Silakan kembali nanti.</p>
+    <button onclick="goBack()">Kembali</button>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();  // Fungsi untuk kembali ke halaman sebelumnya
+    }
+</script>
+
+</body>
+</html>
