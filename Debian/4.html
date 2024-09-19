@@ -1,0 +1,202 @@
+<!DOCTYPE html> 
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cara Melakukan Update Repository Online di Debian 11</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+
+        header {
+            background: #344037;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .menu-button:hover {
+            background-color: #5a6268;
+        }
+
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        article {
+            padding: 20px;
+            background: #fff;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #495057;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #495057;
+        }
+
+        code {
+            background: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #c7254e;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            border: 1px solid #dee2e6;
+        }
+
+        .highlight {
+            background: #e2e6ea;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 5px solid #007bff;
+            margin: 20px 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="container">
+
+            <h1>LEXXCY</h1>
+
+            <button class="menu-button" onclick="goBack()">Kembali</button>
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <article>
+
+            <h2>Cara Melakukan Update Repository Online di Debian 11</h2>
+
+            <p>Selamat datang di tutorial ini! Kali ini, kita akan membahas langkah-langkah untuk melakukan update repository di Debian 11. Memperbarui repository sangat penting untuk memastikan Anda mendapatkan paket perangkat lunak terbaru dan keamanan yang terjaga.</p>
+
+            <h3>1. Menambahkan atau Mengedit Repository Debian 11</h3>
+
+            <p>Untuk menambahkan atau mengedit repository Debian 11, buka file sumber repository dengan perintah:</p>
+
+            <pre><code>nano /etc/apt/sources.list</code></pre>
+
+            <div class="highlight">
+                <p>Kode yang diawali dengan tanda pagar (#) diabaikan. Untuk mengaktifkan atau menonaktifkan baris repository, tambahkan atau hapus tanda pagar tersebut. Untuk menambahkan repository Debian 11, gunakan entri berikut:</p>
+
+                <pre><code>
+
+deb https://deb.debian.org/debian/ bullseye main
+
+deb-src https://deb.debian.org/debian/ bullseye main
+
+
+
+deb https://security.debian.org/debian-security bullseye-security main contrib
+
+deb-src https://security.debian.org/debian-security bullseye-security main contrib
+
+
+
+deb https://deb.debian.org/debian/ bullseye-updates main contrib
+
+deb-src https://deb.debian.org/debian/ bullseye-updates main contrib
+
+                </code></pre>
+
+                <p>Untuk menyimpan perubahan, tekan <code>Ctrl + X</code>, kemudian <code>Y</code> untuk mengonfirmasi, dan tekan <code>Enter</code>.</p>
+            </div>
+
+            <h3>2. Memperbarui Daftar Paket</h3>
+
+            <p>Setelah menambahkan repository, Anda perlu memperbarui daftar paket dengan menjalankan perintah:</p>
+
+            <pre><code>apt update</code></pre>
+
+            <p>Perintah ini akan memperbarui daftar paket yang tersedia dari semua repository yang dikonfigurasi di sistem Anda.</p>
+
+            <h3>3. Memperbarui Paket-Paket yang Terinstal</h3>
+
+            <p>Untuk memperbarui paket-paket yang sudah terinstal ke versi terbaru, gunakan perintah:</p>
+
+            <pre><code>apt upgrade</code></pre>
+
+            <p>Pastikan bahwa selama proses update tidak ada kesalahan dan paket berhasil diperbarui.</p> 
+
+        </article>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LEXXCY. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body> 
+</html>

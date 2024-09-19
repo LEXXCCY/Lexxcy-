@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Instalasi Debian 11 di VirtualBox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative; /* Required for absolute positioning of menu */
+        }
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Move button to the left */
+            background-color: #6c757d; /* Grey color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-button:hover {
+            background-color: #5a6268; /* Darker grey for hover effect */
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        article {
+            padding: 20px;
+            background: #fff;
+            margin: 20px 0;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Ensure text wraps in preformatted blocks */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>LEXXCY</h1>
+            <button class="menu-button" id="backButton">Kembali</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2>LEXXCY</h2>
+            <p>Ikuti langkah-langkah di bawah ini untuk menginstal Debian 11 di VirtualBox.</p>
+            
+            <h3>1. Unduh dan Instal VirtualBox</h3>
+            <p>Unduh VirtualBox dari <a href="https://www.virtualbox.org/" target="_blank">situs resmi VirtualBox</a> dan instal di komputer Anda. Pilih versi yang sesuai dengan sistem operasi Anda.</p>
+            
+            <h3>2. Unduh Gambar ISO Debian 11</h3>
+            <p>Kunjungi <a href="https://www.debian.org/distrib/" target="_blank">situs resmi Debian</a> dan unduh gambar ISO Debian 11. Pilih versi yang sesuai dengan arsitektur komputer Anda (32-bit atau 64-bit).</p>
+            
+            <h3>3. Buat Mesin Virtual Baru di VirtualBox</h3>
+            <ol>
+                <li>Buka VirtualBox dan klik <strong>New</strong> untuk membuat mesin virtual baru.</li>
+                <li>Masukkan nama mesin virtual (misalnya, "Debian 11"), pilih jenis <strong>Linux</strong> dan versi <strong>Debian (64-bit)</strong>, lalu klik <strong>Next</strong>.</li>
+                <li>Tentukan ukuran memori (RAM) yang ingin digunakan. Ukuran minimum yang disarankan adalah 1 GB, tetapi 2 GB atau lebih akan memberikan performa yang lebih baik. Klik <strong>Next</strong>.</li>
+                <li>Pilih <strong>Create a virtual hard disk now</strong>, lalu klik <strong>Create</strong>.</li>
+                <li>Pilih format hard disk <strong>VDI (VirtualBox Disk Image)</strong> dan klik <strong>Next</strong>.</li>
+                <li>Pilih <strong>Dynamically allocated</strong> untuk ukuran hard disk yang dapat berkembang sesuai kebutuhan. Tentukan ukuran hard disk virtual (misalnya, 20 GB) dan klik <strong>Create</strong>.</li>
+            </ol>
+            
+            <h3>4. Konfigurasi Mesin Virtual</h3>
+            <ol>
+                <li>Pilih mesin virtual yang baru saja Anda buat, lalu klik <strong>Settings</strong>.</li>
+                <li>Di tab <strong>System</strong>, Anda dapat menyesuaikan pengaturan seperti jumlah memori atau urutan boot. Pastikan <strong>Floppy</strong> dinonaktifkan dan <strong>Optical</strong> berada di urutan pertama.</li>
+                <li>Di tab <strong>Storage</strong>, klik ikon <strong>Optical Drive</strong> di bagian <strong>Controller: IDE</strong>. Klik ikon <strong>disk</strong> di sebelah kanan dan pilih <strong>Choose a disk file</strong>. Pilih gambar ISO Debian 11 yang telah Anda unduh.</li>
+            </ol>
+            
+            <h3>5. Mulai Mesin Virtual dan Instal Debian 11</h3>
+            <ol>
+                <li>Klik <strong>Start</strong> untuk memulai mesin virtual. Mesin akan boot dari gambar ISO Debian 11.</li>
+                <li>Pilih <strong>Install</strong> dari menu boot Debian untuk memulai proses instalasi.</li>
+                <li>Ikuti petunjuk pada layar untuk memilih bahasa, lokasi, dan konfigurasi jaringan.</li>
+                <li>Pilih <strong>Partition Disks</strong> untuk menentukan bagaimana Anda ingin mempartisi hard disk. Anda bisa memilih metode otomatis atau manual sesuai kebutuhan.</li>
+                <li>Pilih paket perangkat lunak tambahan yang ingin diinstal, seperti lingkungan desktop dan alat server.</li>
+                <li>Instal GRUB bootloader pada drive utama (biasanya <code>/dev/sda</code>) untuk memungkinkan boot ke Debian.</li>
+                <li>Setelah instalasi selesai, restart mesin virtual. Lepaskan gambar ISO dari drive optik jika diperlukan.</li>
+            </ol>
+            
+            <h3>6. Login dan Konfigurasi Awal</h3>
+            <p>Setelah reboot, login dengan kredensial yang Anda buat selama instalasi. Sekarang Anda dapat mulai menggunakan Debian 11 di VirtualBox dan mengkonfigurasinya sesuai kebutuhan.</p>
+     
+   </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LEXXCY. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

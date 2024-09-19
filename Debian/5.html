@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurasi SSH Server di Debian 11</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        .header-container {
+            background: #343a40; /* Warna yang sama dengan footer */
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-container h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .back-to-home {
+            background-color: #ffffff;
+            color: #343a40; /* Warna teks yang kontras dengan latar belakang */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-home:hover {
+            background-color: #e0e0e0; /* Warna latar belakang hover */
+            color: #343a40;
+        }
+
+        .main-content {
+            padding: 100px 20px 80px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h2 {
+            color: #00796b;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .main-content p, .main-content li {
+            margin: 15px 0;
+        }
+
+        .main-content ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .main-content ul li {
+            margin: 10px 0;
+        }
+
+        .code-block {
+            background-color: #e0f2f1;
+            border-left: 4px solid #00796b;
+            padding: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        footer {
+            background-color: #343a40; /* Warna yang sama dengan header */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <button class="back-to-home" onclick="window.history.back();">Kembali</button>
+        <h1>LEXXCY</h1>
+        <div style="width: 120px;"></div> <!-- Placeholder for balance -->
+    </div>
+
+    <div class="main-content">
+        <h2>Apa itu SSH?</h2>
+        <p>SSH (Secure Shell) adalah protokol jaringan yang digunakan untuk mengakses dan mengelola server secara aman melalui jaringan yang tidak aman. SSH mengenkripsi data yang dikirim antara klien dan server untuk melindungi informasi dari penyadapan atau modifikasi.</p>
+
+        <h2>Langkah-Langkah untuk Menginstal SSH Server di Debian 11</h2>
+
+        <h3>1. Install Paket OpenSSH Server</h3>
+        <p>Untuk menginstal server SSH, Anda perlu menginstal paket <code>openssh-server</code>. Gunakan perintah berikut:</p>
+        <div class="code-block">
+            <pre><code>apt update
+apt install openssh-server</code></pre>
+        </div>
+
+        <h3>2. Verifikasi Status Layanan SSH</h3>
+        <p>Setelah instalasi, pastikan layanan SSH berjalan dengan perintah:</p>
+        <div class="code-block">
+            <pre><code>systemctl status ssh</code></pre>
+        </div>
+        <p>Anda akan melihat status dari layanan SSH. Jika layanan tidak berjalan, Anda dapat memulai dan mengaktifkannya dengan perintah:</p>
+        <div class="code-block">
+            <pre><code>systemctl start ssh
+systemctl enable ssh</code></pre>
+        </div>
+
+        <h3>3. Konfigurasi SSH Server</h3>
+        <p>Konfigurasi default biasanya sudah cukup untuk penggunaan dasar. Namun, Anda bisa menyesuaikan file konfigurasi di <code>/etc/ssh/sshd_config</code> jika diperlukan. Untuk mengedit file konfigurasi, gunakan editor teks seperti <code>nano</code>:</p>
+        <div class="code-block">
+            <pre><code>nano /etc/ssh/sshd_config</code></pre>
+        </div>
+        <p>Beberapa pengaturan umum yang mungkin ingin Anda sesuaikan termasuk:</p>
+        <ul>
+            <li><code>PermitRootLogin</code> - Mengatur apakah login sebagai root diperbolehkan.</li>
+            <li><code>PasswordAuthentication</code> - Mengatur apakah autentikasi dengan password diizinkan.</li>
+        </ul>
+        <p>Setelah mengubah konfigurasi, restart layanan SSH untuk menerapkan perubahan:</p>
+        <div class="code-block">
+            <pre><code>systemctl restart ssh</code></pre>
+        </div>
+
+        <h3>4. Pengecekan IP Address SSH Server</h3>
+        <p>IP ini berguna untuk remot server menggunakan PuTTY atau WinSCP dengan menggunakan perintah:</p>
+        <div class="code-block">
+            <pre><code>ip a</code></pre>
+        </div>
+
+        <h3>5. Menggunakan PuTTY untuk Remote Server</h3>
+        <p>PuTTY adalah salah satu klien SSH paling populer untuk Windows. Berikut adalah langkah-langkah untuk mengakses server Debian Anda menggunakan PuTTY:</p>
+        <ol>
+            <li>Unduh dan instal PuTTY di halaman utama: <a href="index.html" target="_blank">PuTTY</a>.</li>
+            <li>Buka PuTTY. Di jendela konfigurasi, masukkan alamat IP server Anda di bagian <strong>Host Name (or IP address)</strong>.</li>
+            <li>Pastikan <strong>Connection type</strong> diset ke <strong>SSH</strong>.</li>
+            <li>Klik <strong>Open</strong> untuk memulai koneksi.</li>
+            <li>Masukkan nama pengguna dan kata sandi saat diminta.</li>
+        </ol>
+
+        <h3>6. Menggunakan WinSCP untuk Transfer File</h3>
+        <p>WinSCP adalah aplikasi transfer file yang memungkinkan Anda mengirim dan menerima file antara komputer lokal dan server SSH. Berikut adalah langkah-langkah untuk menggunakan WinSCP:</p>
+        <ol>
+            <li>Unduh dan instal WinSCP di halaman utama: <a href="index.html" target="_blank">WinSCP</a>.</li>
+            <li>Buka WinSCP. Di jendela login, pilih <strong>SFTP</strong> sebagai <strong>File protocol</strong>.</li>
+            <li>Masukkan alamat IP server Anda di bagian <strong>Host name</strong>, serta nama pengguna dan kata sandi di bagian <strong>User name</strong> dan <strong>Password</strong>.</li>
+            <li>Klik <strong>Login</strong> untuk terhubung ke server.</li>
+            <li>Setelah terhubung, Anda dapat menggunakan antarmuka WinSCP untuk menyalin file antara server dan komputer lokal.</li>
+        </ol>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>© 2024 LEXXCY. All rights reserved</div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perintah Dasar Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative; /* Required for absolute positioning of menu */
+        }
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Move button to the left */
+            background-color: #6c757d; /* Grey color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-button:hover {
+            background-color: #5a6268; /* Darker grey for hover effect */
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        article {
+            padding: 20px;
+            background: #fff;
+            margin: 20px 0;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Ensure text wraps in preformatted blocks */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>LEXXCY</h1>
+            <button class="menu-button" id="backButton">Kembali</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2>Perintah Dasar Linux</h2>
+            <p>Selamat datang di tutorial dasar Linux. Di sini, kita akan membahas beberapa perintah dasar yang sering digunakan di sistem operasi Linux.</p>
+            
+            <h3>1. ls</h3>
+            <p>Perintah <code>ls</code> digunakan untuk menampilkan daftar file dan direktori di dalam direktori saat ini. Anda bisa menggunakan opsi tambahan seperti <code>-l</code> untuk menampilkan detail lebih lanjut, atau <code>-a</code> untuk menampilkan file tersembunyi.</p>
+            <pre><code>ls</code></pre>
+            
+            <h3>2. cd</h3>
+            <p>Perintah <code>cd</code> digunakan untuk berpindah direktori. Misalnya, <code>cd /home/user/Documents</code> akan memindahkan Anda ke direktori <code>Documents</code> di dalam direktori <code>user</code>.</p>
+            
+            <h3>3. cp</h3>
+            <p>Perintah <code>cp</code> digunakan untuk menyalin file atau direktori. Anda perlu menentukan file sumber dan tujuan. Untuk menyalin direktori, gunakan opsi <code>-r</code>.</p>
+            <pre><code>cp file1.txt /home/user/Documents/</code></pre>
+            <pre><code>cp -r dir1 /home/user/</code></pre>
+            
+            <h3>4. mv</h3>
+            <p>Perintah <code>mv</code> digunakan untuk memindahkan atau mengganti nama file dan direktori. Misalnya, <code>mv file1.txt /home/user/</code> akan memindahkan <code>file1.txt</code> ke direktori <code>user</code>.</p>
+            
+            <h3>5. rm</h3>
+            <p>Perintah <code>rm</code> digunakan untuk menghapus file atau direktori. Gunakan opsi <code>-r</code> untuk menghapus direktori beserta isinya. Berhati-hatilah saat menggunakan perintah ini, karena file yang dihapus tidak dapat dikembalikan.</p>
+            <pre><code>rm file1.txt</code></pre>
+            <pre><code>rm -r dir1</code></pre>
+            
+            <h3>6. mkdir</h3>
+            <p>Perintah <code>mkdir</code> digunakan untuk membuat direktori baru. Anda dapat membuat beberapa direktori sekaligus dengan menuliskan nama-nama direktori yang dipisahkan oleh spasi.</p>
+            <pre><code>mkdir newdir</code></pre>
+            <pre><code>mkdir dir1 dir2 dir3</code></pre>
+            
+            <h3>7. nano</h3>
+            <p>Perintah <code>nano</code> adalah editor teks berbasis terminal yang sederhana. Anda bisa menggunakannya untuk membuat atau mengedit file teks. Misalnya, untuk mengedit <code>file1.php</code>, jalankan:</p>
+            <pre><code>nano file1.php</code></pre>
+            
+            <h3>8. ping</h3>
+            <p>Perintah <code>ping</code> digunakan untuk mengecek koneksi jaringan ke sebuah server atau domain. Ini mengirimkan paket data ke alamat yang ditentukan dan menampilkan waktu responsnya.</p>
+            <pre><code>ping namadomain.com</code></pre>
+            <p>Apabila <code>namadomain.com</code> dalam kondisi online, akan muncul respons dengan output <code>time=xxx ms</code>. Jika offline, akan muncul respons <code>request timed out</code> atau <code>destination host unreachable</code>.</p>
+            
+            <h3>9. apt</h3>
+            <p>Perintah <code>apt</code> adalah manajer paket untuk sistem berbasis Debian, seperti Ubuntu. Anda bisa menggunakannya untuk menginstal, menghapus, dan memperbarui paket perangkat lunak.</p>
+            <pre><code>sudo apt update</code></pre>
+            <pre><code>sudo apt install paketname</code></pre>
+            
+            <h3>10. reboot</h3>
+            <p>Perintah <code>reboot</code> digunakan untuk me-restart sistem Linux. Proses ini biasanya dilakukan setelah melakukan perubahan penting atau pembaruan sistem. Pastikan semua aplikasi penting sudah disimpan sebelum menjalankan perintah ini.</p>
+            <pre><code>sudo reboot</code></pre>
+
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LEXXCY. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

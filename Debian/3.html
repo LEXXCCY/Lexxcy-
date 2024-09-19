@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurasi Apache HTTP Webserver di Debian | Notebook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #bbb 1px solid;
+            position: relative; /* Menambahkan posisi relatif untuk memfasilitasi tombol dengan posisi absolut */
+        }
+        header h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 24px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px; /* Mengatur jarak dari atas header */
+            left: 20px; /* Mengatur jarak dari kiri */
+            padding: 10px 20px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #777;
+        }
+        article {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #e8e8e8;
+            padding: 10px;
+            border-left: 4px solid #333;
+            overflow-x: auto;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Tombol kembali di pojok kiri atas -->
+            <button class="back-button" onclick="goBack()">Kembali</button>
+            <h1>LEXXCY</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2>Pengantar</h2>
+            <p>Apache HTTP Webserver adalah salah satu web server yang paling banyak digunakan di dunia. Artikel ini akan membahas cara mengonfigurasi Apache HTTP Webserver di sistem operasi Debian.</p>
+
+            <h2>1. Instalasi Apache</h2>
+            <p>Untuk menginstal Apache di Debian, buka terminal dan jalankan perintah berikut:</p>
+            <pre><code>sudo apt update
+sudo apt install apache2</code></pre>
+
+            <h2>2. Memeriksa Status Apache</h2>
+            <p>Untuk memeriksa status Apache, gunakan perintah ini:</p>
+            <pre><code>sudo systemctl status apache2</code></pre>
+
+            <h2>3. Konfigurasi Virtual Host</h2>
+            <p>Untuk menambahkan konfigurasi virtual host, buat file baru di direktori <code>/etc/apache2/sites-available/</code>. Misalnya:</p>
+            <pre><code>sudo nano /etc/apache2/sites-available/example.com.conf</code></pre>
+            <p>Isi file tersebut dengan konfigurasi berikut:</p>
+            <pre><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@example.com
+    ServerName example.com
+    DocumentRoot /var/www/example.com
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;</code></pre>
+
+            <h2>4. Mengaktifkan Virtual Host</h2>
+            <p>Aktifkan konfigurasi virtual host yang baru saja dibuat dengan perintah:</p>
+            <pre><code>sudo a2ensite example.com.conf</code></pre>
+            <p>Dan restart Apache untuk menerapkan perubahan:</p>
+            <pre><code>sudo systemctl reload apache2</code></pre>
+
+            <h2>5. Kesimpulan</h2>
+            <p>Anda telah berhasil mengonfigurasi Apache HTTP Webserver di Debian. Sekarang, Anda dapat mengakses situs web Anda menggunakan domain yang telah Anda konfigurasi.</p>
+        </article>
+    </div>
+
+    <footer>
+        &copy; 2024 LEXXCY. All rights reserved.
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
