@@ -3,174 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cara Mengganti Domain di Debian 12 Menggunakan BIND9</title>
+    <title>DHCP Server di Debian 11 VirtualBox dengan enp0s8</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+
+        header {
+            background: #344037;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .menu-button:hover {
+            background-color: #5a6268;
+        }
+
+        .container {
+            width: 85%;
             margin: 0 auto;
+            overflow: hidden;
+        }
+
+        article {
             padding: 20px;
+            background: #fff;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
         }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #495057;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #495057;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
         pre {
             background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-left: 3px solid #f36d33;
-            color: #666;
-            page-break-inside: avoid;
-            font-family: monospace;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 1.6em;
-            max-width: 100%;
-            overflow: auto;
-            padding: 1em 1.5em;
-            display: block;
-            word-wrap: break-word;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
         }
+
         .note {
-            background-color: #f0f7fb;
-            border-left: solid 4px #3498db;
-            line-height: 18px;
-            overflow: hidden;
-            padding: 12px;
-            margin-bottom: 20px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
+            background-color: #ffffd9;
+            border-left: 4px solid #ffeb3b;
+            padding: 10px;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Cara Mengganti Domain di Debian 12 Menggunakan BIND9</h1>
-    
-    <div class="note">
-        <p><strong>Catatan:</strong> Panduan ini menjelaskan langkah-langkah untuk mengganti domain pada server DNS BIND9 di Debian 12. Pastikan Anda memiliki hak akses root atau sudo untuk menjalankan perintah-perintah di bawah ini.</p>
-    </div>
 
-    <h2>1. Pemasangan Apache2</h2>
-    <p>Sebelum menginstal BIND9, Anda mungkin ingin memasang Apache2 jika server ini juga digunakan untuk hosting situs web. Untuk memasang Apache2, jalankan perintah berikut:</p>
-    <pre>
-sudo apt update
-sudo apt install apache2
-    </pre>
-    <p>Setelah instalasi selesai, Masuk ke dalam Direktori Apache2 dengan perintah</p>
-    <pre>
-cd /etc/apache2
-    </pre>
-    <pre>
-cd /sites-enabled
-    </pre>
-    <p>Jika sudah masuk Direktori Apache2, anda harus masuk ke dalam file dengan perintah </p>
-    <pre>
-nano 000-default.conf
-    </pre>
-    <p>tambahkan perintah seperti di baeah ini</p>
-    <pre>
-nano 000-default.conf
-    </pre>
+    <header>
+        <div class="container">
+            <h1>LEXXCY</h1>
+            <button class="menu-button" onclick="goBack()">Kembali</button>
+        </div>
+    </header>
 
-    <h2>2. Pemasangan BIND9</h2>
-    <p>Pastikan BIND9 sudah terinstal dan berjalan di sistem Anda. Jika belum, Anda dapat menginstalnya dengan perintah:</p>
-    <pre>
-sudo apt install bind9
-    </pre>
-    
-        <h2>3. Buat Zone File Baru</h2>
-    <p>Buat zone file baru untuk domain baru Anda. Misalnya, jika domain baru Anda adalah "newdomain.com", buat file dengan nama "db.newdomain.com":</p>
-    <pre>
-/etc/bind/named.conf.default-zones
-    </pre>
-    <p>Isi file dengan konfigurasi zone berikut (sesuaikan dengan kebutuhan Anda):</p>
-    <pre>zone “aslabkom.com” { 
-    type master;
-    file “/etc/bind/db.aslabkom”; };
+    <div class="container">
+        <article>
+            <h2>Mengatur DHCP Server di Debian 11 menggunakan VirtualBox dengan enp0s8</h2>
+            
+            <h3>Langkah 1: Instalasi VirtualBox dan Debian 11</h3>
+            <p>Pastikan Anda sudah menginstal VirtualBox dan membuat mesin virtual Debian 11.</p>
 
-zone “98.168.192.in-addr.arpa” { 
-    type master;
-    file “/etc/bind/db.192”; };
-    </pre>
+            <h3>Langkah 2: Konfigurasi Jaringan VirtualBox</h3>
+            <ol>
+                <li>Buka pengaturan mesin virtual Debian 11 Anda.</li>
+                <li>Pilih tab "Jaringan".</li>
+                <li>Untuk Adapter 1 (biasanya enp0s3):
+                    <ul>
+                        <li>Aktifkan adapter</li>
+                        <li>Atur "Terpasang ke" sebagai "NAT" untuk akses internet</li>
+                    </ul>
+                </li>
+                <li>Untuk Adapter 2 (yang akan menjadi enp0s8):
+                    <ul>
+                        <li>Aktifkan adapter</li>
+                        <li>Ubah "Terpasang ke" menjadi "Jaringan Internal" atau "Host-only Adapter"</li>
+                        <li>Beri nama jaringan internal, misalnya "intnet"</li>
+                    </ul>
+                </li>
+            </ol>
 
-    <h2>3. Daftarkan nama domain</h2>
-    <p>daftarkan domain  baru untuk domain baru Anda. Misalnya, jika domain baru Anda adalah "contoh.com"</p>
-    <pre>
- /etc/bind/named.conf.default-zones
-    </pre>
-    <p>Isi file dengan konfigurasi zone berikut (sesuaikan dengan kebutuhan Anda):</p>
-    <pre>
-$TTL    604800
-@       IN      SOA     ns1.newdomain.com. admin.newdomain.com. (
-                        2023061001      ; Serial
-                        604800          ; Refresh
-                        86400           ; Retry
-                        2419200         ; Expire
-                        604800 )        ; Negative Cache TTL
-;
-@       IN      NS      ns1.newdomain.com.
-1ns     IN      A       your_server_ip
-1       IN      A       your_server_ip
-    </pre>
+            <div class="note">
+                <p><strong>Catatan:</strong> Penggunaan enp0s8 biasanya menandakan bahwa Anda menggunakan adapter jaringan kedua di VirtualBox. Ini berguna untuk memisahkan jaringan DHCP Anda dari koneksi internet utama (yang biasanya menggunakan enp0s3).</p>
+            </div>
 
-    <h2>4. Edit Konfigurasi BIND9</h2>
-    <p>Edit file konfigurasi utama BIND9:</p>
-    <pre>
-sudo nano /etc/bind/named.conf.local
-    </pre>
-    <p>Tambahkan zone baru untuk domain baru Anda:</p>
-    <pre>
-zone "newdomain.com" {
-    type master;
-    file "/etc/bind/db.newdomain.com";
-};
-    </pre>
+            <h3>Langkah 3: Konfigurasi IP Statis untuk enp0s8</h3>
+            <p>Edit file konfigurasi jaringan:</p>
+            <pre><code>sudo nano /etc/network/interfaces</code></pre>
+            <p>Tambahkan konfigurasi berikut:</p>
+            <pre><code>auto enp0s8
+iface enp0s8 inet static
+    address 192.168.56.1
+    netmask 255.255.255.0</code></pre>
+            <p>Restart layanan jaringan:</p>
+            <pre><code>sudo systemctl restart networking</code></pre>
 
-    <h2>5. Periksa Konfigurasi</h2>
-    <p>Periksa konfigurasi BIND9 untuk memastikan tidak ada kesalahan sintaks:</p>
-    <pre>
-sudo named-checkconf
-    </pre>
-    <p>Periksa juga zone file baru Anda:</p>
-    <pre>
-sudo named-checkzone newdomain.com /etc/bind/db.newdomain.com
-    </pre>
+            <h3>Langkah 4: Instalasi DHCP Server</h3>
+            <p>Buka terminal di Debian 11 dan jalankan perintah berikut:</p>
+            <pre><code>sudo apt update
+sudo apt install isc-dhcp-server</code></pre>
 
-    <h2>6. Restart BIND9</h2>
-    <p>Jika tidak ada kesalahan, restart layanan BIND9:</p>
-    <pre>
-sudo systemctl restart bind9
-    </pre>
+            <h3>Langkah 5: Konfigurasi DHCP Server</h3>
+            <p>Edit file konfigurasi DHCP:</p>
+            <pre><code>sudo nano /etc/dhcp/dhcpd.conf</code></pre>
+            <p>Tambahkan konfigurasi berikut (sesuaikan dengan kebutuhan Anda):</p>
+            <pre><code>subnet 192.168.4.0 netmask 255.255.255.0 { 
+range 192.168.4.2 192.168.4.10; 
+option domain-name-servers 192.168.4.1; 
+option domain-name "lexxcy.com"; 
+option routers 192.168.4.1; 
+option broadcast-address 192.168.4.255; 
+default-lease-time 600; 
+max-lease-time 7200;
+}</code></pre>
 
-    <h2>7. Update Konfigurasi Jaringan</h2>
-    <p>Jika server ini juga berperan sebagai DNS server untuk jaringan lokal, update file resolv.conf:</p>
-    <pre>
-sudo nano /etc/resolv.conf
-    </pre>
-    <p>Pastikan nameserver menunjuk ke IP lokal server Anda:</p>
-    <pre>
-nameserver 127.0.0.1
-    </pre>
+            <h3>Langkah 6: Konfigurasi Interface</h3>
+            <p>Edit file interface DHCP:</p>
+            <pre><code>sudo nano /etc/default/isc-dhcp-server</code></pre>
+            <p>Ubah baris INTERFACESv4 menjadi:</p>
+            <pre><code>INTERFACESv4="enp0s8"</code></pre>
 
-    <h2>8. Pengujian</h2>
-    <p>Uji konfigurasi baru Anda dengan menggunakan tools seperti dig atau nslookup:</p>
-    <pre>
-dig @localhost newdomain.com
-nslookup newdomain.com localhost
-    </pre>
+            <h3>Langkah 7: Restart DHCP Server</h3>
+            <pre><code>sudo systemctl restart isc-dhcp-server</code></pre>
 
-    <h2>Kesimpulan</h2>
-    <p>Anda telah berhasil mengganti domain di server DNS BIND9 pada Debian 12. Ingatlah untuk memperbarui catatan DNS di registrar domain Anda agar menunjuk ke server Anda jika diperlukan.</p>
+            <h3>Langkah 8: Verifikasi Status DHCP Server</h3>
+            <pre><code>sudo systemctl status isc-dhcp-server</code></pre>
 
-    <div class="note">
-        <p><strong>Penting:</strong> Perubahan DNS mungkin memerlukan waktu hingga 48 jam untuk menyebar sepenuhnya di internet. Ini disebut propagasi DNS.</p>
+            <p>Jika semua berjalan dengan baik, DHCP server Anda sekarang sudah berjalan pada interface enp0s8 dan siap melayani permintaan IP dari klien di jaringan internal Anda.</p>
+
+            <div class="note">
+                <p><strong>Penting:</strong> Pastikan firewall Anda mengizinkan lalu lintas DHCP pada interface enp0s8. Jika menggunakan UFW, Anda mungkin perlu menambahkan aturan berikut:</p>
+                <pre><code>sudo ufw allow in on enp0s8 to any port 67 proto udp</code></pre>
+            </div>
+
+            <h3>Langkah 9: Memeriksa IP Address di PC</h3>
+            <p>Anda dapat memeriksa apakah PC klien sudah mendapatkan IP address dari DHCP server dengan dua metode:</p>
+
+            <h4>1. Melalui Control Panel (Host-only Adapter)</h4>
+            <ol>
+                <li>Buka <strong>Control Panel</strong> dengan cara klik tombol <strong>Start</strong> dan ketik <strong>Control Panel</strong>.</li>
+                <li>Pilih <strong>Network and Sharing Center</strong>.</li>
+                <li>Klik <strong>Change adapter settings</strong> di sisi kiri.</li>
+                <li>Cari adapter <strong>Host-only Adapter</strong> (biasanya diberi nama <em>VirtualBox Host-Only Network</em>).</li>
+                <li>Klik kanan pada adapter tersebut, lalu pilih <strong>Status</strong>.</li>
+                <li>Klik <strong>Details</strong> untuk melihat detail IP address yang digunakan.</li>
+            </ol>
+
+            <h4>2. Melalui Command Prompt (CMD)</h4>
+            <ol>
+                <li>Buka <strong>Command Prompt</strong> dengan cara menekan tombol <strong>Windows + R</strong>, ketik <code>cmd</code>, lalu tekan <strong>Enter</strong>.</li>
+                <li>Ketik perintah berikut di CMD dan tekan <strong>Enter</strong>:
+                    <pre><code>ipconfig</code></pre>
+                </li>
+                <li>Cari adapter jaringan yang terkait dengan <em>Host-only Adapter</em> (misalnya, <strong>VirtualBox Host-Only Network</strong>).</li>
+                <li>Lihat bagian <strong>IPv4 Address</strong> untuk melihat alamat IP yang diberikan oleh DHCP server.</li>
+            </ol>
+        </article>
     </div>
 
     <footer>
-        <p>Untuk informasi lebih lanjut, kunjungi <a href="https://www.isc.org/bind/">dokumentasi resmi BIND9</a>.</p>
+        <p>&copy; 2024 LEXXCY. All rights reserved.</p>
     </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
 </body>
 </html>
