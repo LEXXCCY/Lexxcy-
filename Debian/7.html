@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Instalasi Samba di Debian 11 pada VirtualBox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+
+        header {
+            background: #344037;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .menu-button:hover {
+            background-color: #5a6268;
+        }
+
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        article {
+            padding: 20px;
+            background: #fff;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #495057;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #495057;
+        }
+
+        code {
+            background: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #c7254e;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>LEXXCY</h1>
+            <button class="menu-button" onclick="goBack()">Kembali</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <article>
+            <h2>Panduan Instalasi Samba di Debian 11 pada VirtualBox</h2>
+
+            <h3>Langkah 1: Persiapan</h3>
+            <p>Pastikan Anda sudah menginstal Debian 11 di VirtualBox dan memiliki akses internet.</p>
+
+            <h3>Langkah 2: Update Sistem</h3>
+            <p>Buka terminal dan jalankan perintah berikut:</p>
+            <pre><code>apt update
+ apt upgrade -y</code></pre>
+
+            <h3>Langkah 3: Instal Samba</h3>
+            <p>Instal Samba dengan perintah:</p>
+            <pre><code>apt install samba -y</code></pre>
+            <p>Jalankan samba dengan perintah</p>
+            <pre><code>systemctl start smbd.service</code></pre>
+            <p>Pastikan samba running di Debian 11</p>
+            <pre><code>systemctl status smbd.service</code></pre>
+          
+            <h3>Langkah 4: Buat Direktori untuk Sharing</h3>
+            <p>Buat direktori yang akan di-share:</p>
+            <pre><code>mkdir /home/username</code></pre>
+            
+            <p>Tidak ada pembatasan pada file permission\. Setiap user dapat melakukan apa 
+saja.</p>
+            <pre><code>chmod 777 /home/username</code></pre>
+            
+            <h3>Langkah 5: Konfigurasi Samba</h3>
+            <p>Buat backup file konfigurasi Samba:</p>
+            <pre><code>sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.ori</code></pre>
+            <p>Edit file konfigurasi Samba:</p>
+            <pre><code>sudo nano /etc/samba/smb.conf</code></pre>
+            <p>Tambahkan konfigurasi berikut di akhir file:</p>
+            <pre><code>[ShareFolder]
+    path = /home/username/ShareFolder
+    read only = no
+    browsable = yes
+    guest ok = yes</code></pre>
+            <p>Ganti "username" dengan nama pengguna Anda.</p>
+
+            <h3>Langkah 6: Buat user untuk Sharing</h3>
+            <p>Simpan script ctrl+X, Y, Enter. Folder ditempel sudah bisa digunakan bersama, baik oleh debian maupun windows. Tapi folder belum bisa di akses, caranya dengan membuat user dan password terlebih dahulu untuk pengguna windows yang ingin meng akses nya.</p>
+            <pre><code>useradd username</code></pre>
+            <pre><code>smbpasswd -a username</code></pre>
+            
+
+            <h3>Langkah 7: Restart Layanan Samba</h3>
+            <p>Restart layanan Samba untuk menerapkan perubahan:</p>
+            <pre><code>sudo systemctl restart smbd
+sudo systemctl restart nmbd</code></pre>
+
+            <h3>Langkah 8: Akses Samba dari Komputer Lain</h3>
+            <p>Dari komputer Windows, buka File Explorer dan ketik:</p>
+            <pre><code>\\IP_ADDRESS_DEBIAN</code></pre>
+            <p>Ganti IP_ADDRESS_DEBIAN dengan alamat IP mesin virtual Debian Anda.</p>
+
+            <p>Selamat! Anda telah berhasil menginstal dan mengkonfigurasi Samba di Debian 11 pada VirtualBox.</p>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LEXXCY. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
