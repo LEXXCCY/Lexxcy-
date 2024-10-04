@@ -128,6 +128,8 @@
             <pre><code>systemctl status smbd.service</code></pre>
           
             <h3>Langkah 4: Buat Direktori untuk Sharing</h3>
+            <p>Buat backup file konfigurasi Samba:</p>
+            <pre><code>sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.ori</code></pre>
             <p>Buat direktori yang akan di-share:</p>
             <pre><code>mkdir /home/username</code></pre>
             
@@ -136,8 +138,6 @@ saja.</p>
             <pre><code>chmod 777 /home/username</code></pre>
             
             <h3>Langkah 5: Konfigurasi Samba</h3>
-            <p>Buat backup file konfigurasi Samba:</p>
-            <pre><code>sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.ori</code></pre>
             <p>Edit file konfigurasi Samba:</p>
             <pre><code>sudo nano /etc/samba/smb.conf</code></pre>
             <p>Tambahkan konfigurasi berikut di akhir file:</p>
